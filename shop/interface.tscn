@@ -1,0 +1,104 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmgxxjk2picvl"]
+
+[ext_resource type="Script" path="res://shop/interface.gd" id="1_1uodc"]
+[ext_resource type="Script" path="res://shop/selection_rectangle.gd" id="3_falkk"]
+[ext_resource type="Script" path="res://shop/button_item.gd" id="3_j5gk7"]
+[ext_resource type="AudioStream" uid="uid://b8ywpjcid54sc" path="res://sound/shop.wav" id="4_mpnad"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocjm5"]
+
+[node name="ShopInterface" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_1uodc")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(268, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -59.5
+offset_right = 128.0
+offset_bottom = 59.5
+grow_horizontal = 2
+
+[node name="VBox" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="PanelContainer/VBox"]
+layout_mode = 2
+text = "Shop"
+horizontal_alignment = 1
+
+[node name="ItemsContainer" type="HFlowContainer" parent="PanelContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ButtonItem" type="TextureButton" parent="PanelContainer/VBox/ItemsContainer"]
+visible = false
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_ocjm5")
+script = ExtResource("3_j5gk7")
+
+[node name="Nothing" type="Label" parent="PanelContainer/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.815686, 0.815686, 0.815686, 1)
+text = "Sorry nothing"
+horizontal_alignment = 1
+
+[node name="Buy" type="Button" parent="PanelContainer/VBox"]
+visible = false
+layout_mode = 2
+text = "Buy"
+
+[node name="ToolTip" type="Label" parent="PanelContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Description" type="Label" parent="PanelContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.815686, 0.815686, 0.815686, 1)
+autowrap_mode = 2
+
+[node name="Cancel" type="Button" parent="PanelContainer/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+text = "Exit"
+
+[node name="SelectionRectangle" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+script = ExtResource("3_falkk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_mpnad")
+volume_db = -20.0
+autoplay = true
+
+[connection signal="pressed" from="PanelContainer/VBox/Cancel" to="." method="cancel"]

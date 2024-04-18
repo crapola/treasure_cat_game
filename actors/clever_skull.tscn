@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://dv0wpkdmhmtae"]
+
+[ext_resource type="Script" path="res://actors/clever_skull.gd" id="1_xhyab"]
+[ext_resource type="Script" path="res://velocity.gd" id="2_fw1fv"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="3_edo07"]
+[ext_resource type="PackedScene" uid="uid://b3a4qdheg1cll" path="res://eye.tscn" id="4_ghmql"]
+[ext_resource type="Script" path="res://sprite.gd" id="4_thk0f"]
+[ext_resource type="PackedScene" uid="uid://bovhp34xkvwyp" path="res://hand.tscn" id="5_hwe6l"]
+[ext_resource type="AudioStream" uid="uid://bupy3cutp0f0s" path="res://sound/bones.wav" id="7_c74jj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qcu88"]
+radius = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_usq1i"]
+radius = 256.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cw4xr"]
+random_pitch = 1.05
+streams_count = 1
+stream_0/stream = ExtResource("7_c74jj")
+stream_0/weight = 1.0
+
+[node name="CleverSkull" type="Node2D" node_paths=PackedStringArray("hand", "hit_sound", "velocity_component")]
+script = ExtResource("1_xhyab")
+buffs = true
+hand = NodePath("Arm")
+hit_sound = NodePath("AudioStreamPlayer2D")
+velocity_component = NodePath("SkullBody/Velocity")
+
+[node name="SkullBody" type="CharacterBody2D" parent="."]
+collision_layer = 2
+collision_mask = 514
+motion_mode = 1
+
+[node name="Velocity" type="Node" parent="SkullBody"]
+script = ExtResource("2_fw1fv")
+
+[node name="BodyShape" type="CollisionShape2D" parent="SkullBody"]
+shape = SubResource("CircleShape2D_qcu88")
+debug_color = Color(1, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="SkullBody"]
+self_modulate = Color(0.862745, 1, 1, 1)
+texture = ExtResource("3_edo07")
+region_enabled = true
+region_rect = Rect2(128, 0, 64, 64)
+script = ExtResource("4_thk0f")
+faction = -1
+metadata/_edit_group_ = true
+
+[node name="Eye" parent="SkullBody/Sprite2D" node_paths=PackedStringArray("velocity") instance=ExtResource("4_ghmql")]
+position = Vector2(11, 0)
+scale = Vector2(0.2, 0.2)
+velocity = NodePath("../../Velocity")
+
+[node name="Eye2" parent="SkullBody/Sprite2D" node_paths=PackedStringArray("velocity") instance=ExtResource("4_ghmql")]
+position = Vector2(-11, 0)
+scale = Vector2(0.2, 0.2)
+velocity = NodePath("../../Velocity")
+
+[node name="Timer" type="Timer" parent="SkullBody"]
+autostart = true
+
+[node name="Sensor" type="Area2D" parent="SkullBody"]
+collision_layer = 0
+collision_mask = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SkullBody/Sensor"]
+shape = SubResource("CircleShape2D_usq1i")
+
+[node name="Arm" parent="." instance=ExtResource("5_hwe6l")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_cw4xr")
+volume_db = -5.0
+
+[connection signal="timeout" from="SkullBody/Timer" to="." method="_Timer_on_timeout"]

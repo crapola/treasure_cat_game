@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5smwok7e4w63"]
+
+[ext_resource type="Script" path="res://arena.gd" id="1_17ypj"]
+
+[node name="ArenaArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 7
+script = ExtResource("1_17ypj")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -10
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(0.25098, 0.184314, 0.25098, 1)

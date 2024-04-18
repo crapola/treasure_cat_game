@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3a4lculj5cf3"]
+
+[ext_resource type="Script" path="res://title.gd" id="1_s7q58"]
+
+[sub_resource type="FontVariation" id="FontVariation_b6dw3"]
+variation_transform = Transform2D(1, 0.1, 0.1, 1, 0, 0)
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s7q58")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/Container"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("FontVariation_b6dw3")
+text = "Treasure Cat Game"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="CenterContainer/Container"]
+layout_mode = 2
+text = "Click to start"
+horizontal_alignment = 1
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

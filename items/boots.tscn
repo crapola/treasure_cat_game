@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://jvn6pg81gplk"]
+
+[ext_resource type="Script" path="res://items/boots.gd" id="1_eufxy"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_gk4fj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hviyp"]
+radius = 25.0
+
+[node name="Boots" type="Area2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_eufxy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gk4fj")
+region_enabled = true
+region_rect = Rect2(0, 192, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hviyp")

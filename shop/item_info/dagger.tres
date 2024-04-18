@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ShopItemInfo" load_steps=5 format=3 uid="uid://cee13q1wm50qu"]
+
+[ext_resource type="PackedScene" uid="uid://cgbrns2p5i4fw" path="res://items/dagger_pickup.tscn" id="1_bsc4g"]
+[ext_resource type="Script" path="res://shop/shop_item_info.gd" id="2_s224i"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="3_e2lhe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te8tj"]
+atlas = ExtResource("3_e2lhe")
+region = Rect2(64, 192, 64, 64)
+
+[resource]
+resource_name = "Dagger"
+script = ExtResource("2_s224i")
+description = "A weapon with limited durability."
+price = 20
+scene = ExtResource("1_bsc4g")
+texture = SubResource("AtlasTexture_te8tj")

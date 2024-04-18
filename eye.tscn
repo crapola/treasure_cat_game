@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3a4qdheg1cll"]
+
+[ext_resource type="Texture2D" uid="uid://kyfhsr4uad6f" path="res://circle.png" id="1_s1yry"]
+[ext_resource type="Script" path="res://eye.gd" id="2_417wm"]
+
+[node name="Eye" type="Sprite2D"]
+self_modulate = Color(0, 0, 0, 1)
+texture = ExtResource("1_s1yry")
+script = ExtResource("2_417wm")
+
+[node name="Pupil" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.470588, 0, 1)
+position = Vector2(20, 0)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_s1yry")

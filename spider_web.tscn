@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8svvcjtubdvp"]
+
+[ext_resource type="Script" path="res://spider_web.gd" id="1_att5x"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_uojpi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m0dvm"]
+radius = 20.0
+
+[node name="Web" type="Area2D"]
+collision_layer = 0
+monitorable = false
+script = ExtResource("1_att5x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_uojpi")
+region_enabled = true
+region_rect = Rect2(0, 64, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m0dvm")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

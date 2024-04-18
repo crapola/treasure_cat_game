@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ShopItemInfo" load_steps=5 format=3 uid="uid://bmp18u5igrxxj"]
+
+[ext_resource type="PackedScene" uid="uid://jvn6pg81gplk" path="res://items/boots.tscn" id="1_2w147"]
+[ext_resource type="Script" path="res://shop/shop_item_info.gd" id="2_3k3fe"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="3_ip1oe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_te8tj"]
+atlas = ExtResource("3_ip1oe")
+region = Rect2(0, 192, 64, 64)
+
+[resource]
+resource_name = "Boots of Speed"
+script = ExtResource("2_3k3fe")
+description = "Bestows a temporary speed boost."
+price = 100
+scene = ExtResource("1_2w147")
+texture = SubResource("AtlasTexture_te8tj")

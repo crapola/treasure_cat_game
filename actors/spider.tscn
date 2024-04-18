@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://debrbi1ualuku"]
+
+[ext_resource type="Script" path="res://actors/spider.gd" id="1_pkd6b"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_la647"]
+[ext_resource type="Script" path="res://velocity.gd" id="3_odcof"]
+[ext_resource type="Script" path="res://sprite.gd" id="3_t2mlb"]
+[ext_resource type="AudioStream" uid="uid://cdmm6j1nf3wwk" path="res://sound/spider.wav" id="5_02qfk"]
+[ext_resource type="Script" path="res://feeding.gd" id="5_gkibm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2h5sy"]
+radius = 15.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kmsm5"]
+playback_mode = 2
+streams_count = 1
+stream_0/stream = ExtResource("5_02qfk")
+stream_0/weight = 1.0
+
+[node name="Spider" type="Node2D" node_paths=PackedStringArray("hit_sound", "velocity_component")]
+script = ExtResource("1_pkd6b")
+health = 15
+hit_sound = NodePath("AudioStreamPlayer2D")
+velocity_component = NodePath("Area2D/Velocity")
+wage = 0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+rotation = 1.5708
+texture = ExtResource("2_la647")
+region_enabled = true
+region_rect = Rect2(192, 0, 64, 64)
+script = ExtResource("3_t2mlb")
+faction = -1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_2h5sy")
+
+[node name="Velocity" type="Node" parent="Area2D"]
+script = ExtResource("3_odcof")
+
+[node name="Feeding" type="Node" parent="Area2D"]
+script = ExtResource("5_gkibm")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 2.0
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_kmsm5")
+volume_db = -5.0
+
+[connection signal="timeout" from="Timer" to="." method="_Timer_timeout"]

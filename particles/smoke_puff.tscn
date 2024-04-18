@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc6ayyndq4i2i"]
+
+[ext_resource type="Texture2D" uid="uid://kyfhsr4uad6f" path="res://circle.png" id="1_g75ko"]
+[ext_resource type="Material" uid="uid://6mo1dj1s1kyj" path="res://materials/smoke_material.tres" id="1_ial7x"]
+[ext_resource type="AudioStream" uid="uid://dwn08g06mxa74" path="res://sound/pop.wav" id="2_au3sw"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_uahe1"]
+streams_count = 1
+playback_mode = 2
+stream_0/stream = ExtResource("2_au3sw")
+stream_0/weight = 1.0
+
+[node name="SmokePuff" type="GPUParticles2D"]
+process_material = ExtResource("1_ial7x")
+texture = ExtResource("1_g75ko")
+explosiveness = 1.0
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_uahe1")
+autoplay = true
+
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

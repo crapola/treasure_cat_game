@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://crht4wd802wsa"]
+
+[ext_resource type="Script" path="res://hud.gd" id="1_4xt3x"]
+[ext_resource type="Script" path="res://addons/myplugin/controls/pictorial_value.gd" id="2_sd122"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="3_p0x1c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gywl"]
+atlas = ExtResource("3_p0x1c")
+region = Rect2(128, 128, 64, 64)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4xt3x")
+metadata/_edit_lock_ = true
+
+[node name="Player" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 24.0
+offset_right = 57.0
+offset_bottom = 47.0
+text = "Player"
+
+[node name="Monsters" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 81.0
+offset_bottom = 27.0
+text = "Monsters"
+
+[node name="PlayerHealth" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 608.0
+offset_right = 60.0
+offset_bottom = 656.0
+text = "Health"
+
+[node name="PictorialValue" type="Control" parent="PlayerHealth"]
+anchors_preset = 0
+offset_left = 56.0
+offset_top = -5.0
+offset_right = 88.0
+offset_bottom = 27.0
+script = ExtResource("2_sd122")
+max_value = 20
+texture = SubResource("AtlasTexture_2gywl")
+image_scale = 0.5
+
+[node name="Time" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 8.0
+grow_horizontal = 2
+text = "Time: 0:0:0"
+
+[node name="Timer" type="Timer" parent="Time"]
+process_mode = 3
+autostart = true
+
+[connection signal="timeout" from="Time/Timer" to="." method="_clock_update"]

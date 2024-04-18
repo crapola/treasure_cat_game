@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxn24sjy5ow8d"]
+
+[ext_resource type="Material" uid="uid://7xl7jhi0gblb" path="res://materials/sparkles_material.tres" id="1_ssidw"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_qedg7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34i0j"]
+atlas = ExtResource("2_qedg7")
+region = Rect2(192, 192, 64, 64)
+
+[node name="Sparkles" type="GPUParticles2D"]
+amount = 4
+process_material = ExtResource("1_ssidw")
+texture = SubResource("AtlasTexture_34i0j")

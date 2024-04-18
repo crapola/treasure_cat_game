@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bovhp34xkvwyp"]
+
+[ext_resource type="Script" path="res://hand.gd" id="1_x8ld7"]
+
+[node name="Arm" type="Node2D"]
+script = ExtResource("1_x8ld7")
+
+[node name="Hand" type="Marker2D" parent="."]
+position = Vector2(50, 0)

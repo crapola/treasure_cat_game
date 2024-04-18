@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://djw4q1t20jn37"]
+
+[ext_resource type="Script" path="res://actors/actor.gd" id="1_rn6gs"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_bjbbt"]
+[ext_resource type="Script" path="res://sprite.gd" id="3_wb20j"]
+[ext_resource type="Script" path="res://velocity.gd" id="4_12dyw"]
+[ext_resource type="Script" path="res://collider_combat.gd" id="5_tdiac"]
+[ext_resource type="AudioStream" uid="uid://bmya4snq0nw17" path="res://sound/mouse_squeak.wav" id="6_rtyo5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h52fn"]
+radius = 20.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yjhvb"]
+playback_mode = 2
+streams_count = 1
+stream_0/stream = ExtResource("6_rtyo5")
+stream_0/weight = 1.0
+
+[node name="Mouse" type="Node2D" node_paths=PackedStringArray("hit_sound", "velocity_component")]
+script = ExtResource("1_rn6gs")
+health = 4
+hit_sound = NodePath("AudioStreamPlayer2D")
+velocity_component = NodePath("MouseBody/Velocity")
+
+[node name="MouseBody" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseBody"]
+shape = SubResource("CircleShape2D_h52fn")
+
+[node name="Sprite2D" type="Sprite2D" parent="MouseBody"]
+texture = ExtResource("2_bjbbt")
+region_enabled = true
+region_rect = Rect2(192, 64, 64, 64)
+script = ExtResource("3_wb20j")
+
+[node name="Timer" type="Timer" parent="MouseBody"]
+wait_time = 0.5
+autostart = true
+
+[node name="Velocity" type="Node" parent="MouseBody"]
+script = ExtResource("4_12dyw")
+
+[node name="ColliderCombat" type="Node" parent="MouseBody"]
+script = ExtResource("5_tdiac")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_yjhvb")
+volume_db = -5.0
+
+[connection signal="timeout" from="MouseBody/Timer" to="MouseBody/Velocity" method="random" binds= [128.0]]

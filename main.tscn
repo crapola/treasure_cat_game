@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://da61d84n4wrpy"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_esms3"]
+[ext_resource type="PackedScene" uid="uid://c5smwok7e4w63" path="res://arena.tscn" id="2_jsiyq"]
+[ext_resource type="PackedScene" uid="uid://diqu0lj4gleb6" path="res://shop_spawner.tscn" id="3_6unbt"]
+[ext_resource type="PackedScene" uid="uid://ds6aowe1xgw5y" path="res://actors/cat.tscn" id="3_vbxkn"]
+[ext_resource type="PackedScene" uid="uid://crht4wd802wsa" path="res://hud.tscn" id="7_csjp6"]
+
+[node name="Main" type="Node2D" groups=["bla"]]
+script = ExtResource("1_esms3")
+
+[node name="ArenaArea" parent="." instance=ExtResource("2_jsiyq")]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="ShopSpawner" parent="." node_paths=PackedStringArray("arena") instance=ExtResource("3_6unbt")]
+arena = NodePath("../ArenaArea")
+wait_time = 10.0
+
+[node name="Actors" type="Node" parent="."]
+
+[node name="CatActor" parent="Actors" instance=ExtResource("3_vbxkn")]
+position = Vector2(234, 203)
+
+[node name="CanvasLayerUI" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayerUI" instance=ExtResource("7_csjp6")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

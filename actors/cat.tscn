@@ -1,0 +1,119 @@
+[gd_scene load_steps=11 format=3 uid="uid://ds6aowe1xgw5y"]
+
+[ext_resource type="Script" path="res://actors/cat.gd" id="1_ix20d"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_tcgvb"]
+[ext_resource type="Script" path="res://velocity.gd" id="3_3f20s"]
+[ext_resource type="Script" path="res://collider_combat.gd" id="4_60n8w"]
+[ext_resource type="PackedScene" uid="uid://bovhp34xkvwyp" path="res://hand.tscn" id="5_hy38g"]
+[ext_resource type="AudioStream" uid="uid://bpbhnr8omsg8t" path="res://sound/meow.wav" id="6_d5a1w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1wgbx"]
+radius = 22.0
+
+[sub_resource type="Animation" id="Animation_46eoh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cju0p"]
+resource_name = "hurt"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m8qdr"]
+_data = {
+"RESET": SubResource("Animation_46eoh"),
+"hurt": SubResource("Animation_cju0p")
+}
+
+[node name="CatActor" type="Node2D" node_paths=PackedStringArray("hand", "hit_sound", "velocity_component")]
+script = ExtResource("1_ix20d")
+buffs = true
+hand = NodePath("Arm")
+health = 2
+hit_sound = NodePath("AudioStreamPlayer")
+velocity_component = NodePath("CatArea/Velocity")
+wage = 0
+
+[node name="CatArea" type="Area2D" parent="."]
+collision_mask = 18
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CatArea"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_1wgbx")
+
+[node name="Sprite2D" type="Sprite2D" parent="CatArea"]
+texture = ExtResource("2_tcgvb")
+region_enabled = true
+region_rect = Rect2(128, 64, 64, 64)
+
+[node name="Velocity" type="Node" parent="CatArea"]
+process_physics_priority = -1
+script = ExtResource("3_3f20s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CatArea"]
+libraries = {
+"": SubResource("AnimationLibrary_m8qdr")
+}
+
+[node name="Inventory" type="Node" parent="CatArea"]
+
+[node name="ColliderCombat" type="Node" parent="CatArea"]
+script = ExtResource("4_60n8w")
+
+[node name="Arm" parent="." instance=ExtResource("5_hy38g")]
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_d5a1w")
+volume_db = -20.0
+
+[connection signal="area_entered" from="CatArea" to="." method="_CatArea_on_area_entered" flags=3]

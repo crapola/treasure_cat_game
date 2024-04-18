@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://diesrth1mrwjt"]
+
+[ext_resource type="Script" path="res://actors/actor.gd" id="1_3ns8i"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_c4c44"]
+[ext_resource type="Script" path="res://sprite.gd" id="3_dpeqx"]
+[ext_resource type="Script" path="res://velocity.gd" id="4_w7sk3"]
+[ext_resource type="Script" path="res://collider_combat.gd" id="5_q2hqh"]
+[ext_resource type="Script" path="res://roam.gd" id="6_ajlgp"]
+[ext_resource type="Script" path="res://chase.gd" id="6_g118g"]
+[ext_resource type="AudioStream" uid="uid://br44f65fuqdqj" path="res://sound/tiger.wav" id="6_nwosi"]
+[ext_resource type="Script" path="res://feeding.gd" id="8_v5i55"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h52fn"]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gmmdg"]
+radius = 256.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yjhvb"]
+playback_mode = 2
+streams_count = 1
+stream_0/stream = ExtResource("6_nwosi")
+stream_0/weight = 1.0
+
+[node name="Tiger" type="Node2D" node_paths=PackedStringArray("hit_sound", "velocity_component")]
+script = ExtResource("1_3ns8i")
+health = 8
+hit_sound = NodePath("HitSound")
+velocity_component = NodePath("Body/Velocity")
+wage = 2
+
+[node name="Body" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
+shape = SubResource("CircleShape2D_h52fn")
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+texture = ExtResource("2_c4c44")
+region_enabled = true
+region_rect = Rect2(0, 128, 64, 64)
+script = ExtResource("3_dpeqx")
+
+[node name="Timer" type="Timer" parent="Body"]
+process_callback = 0
+autostart = true
+
+[node name="Velocity" type="Node" parent="Body"]
+script = ExtResource("4_w7sk3")
+
+[node name="ColliderCombat" type="Node" parent="Body"]
+script = ExtResource("5_q2hqh")
+
+[node name="Roam" type="Node" parent="Body"]
+script = ExtResource("6_ajlgp")
+autostart = true
+
+[node name="Chase" type="Node" parent="Body"]
+script = ExtResource("6_g118g")
+speed = 96.0
+period = 0.5
+
+[node name="Sensor" type="Area2D" parent="Body"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Sensor"]
+shape = SubResource("CircleShape2D_gmmdg")
+
+[node name="Feeding" type="Node" parent="Body"]
+script = ExtResource("8_v5i55")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_yjhvb")
+volume_db = -5.0
+
+[connection signal="started" from="Body/Chase" to="Body/Roam" method="stop"]
+[connection signal="stopped" from="Body/Chase" to="Body/Roam" method="start"]
+[connection signal="area_entered" from="Body/Sensor" to="Body/Chase" method="on_detected"]
+[connection signal="body_entered" from="Body/Sensor" to="Body/Chase" method="on_detected"]

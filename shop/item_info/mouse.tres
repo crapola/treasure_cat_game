@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="ShopItemInfo" load_steps=5 format=3 uid="uid://ctk8hmmxx2ucb"]
+
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="1_5g3cr"]
+[ext_resource type="PackedScene" uid="uid://djw4q1t20jn37" path="res://actors/mouse.tscn" id="1_vuyfv"]
+[ext_resource type="Script" path="res://shop/shop_item_info.gd" id="2_is0st"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa4uw"]
+atlas = ExtResource("1_5g3cr")
+region = Rect2(192, 64, 64, 64)
+
+[resource]
+resource_name = "Mouse"
+script = ExtResource("2_is0st")
+description = "Roams and collect gold for you."
+price = 125
+scene = ExtResource("1_vuyfv")
+texture = SubResource("AtlasTexture_oa4uw")

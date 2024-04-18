@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgbrns2p5i4fw"]
+
+[ext_resource type="Script" path="res://items/dagger_pickup.gd" id="1_yq1mv"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_44csi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tkkav"]
+size = Vector2(40, 20)
+
+[node name="DaggerPickup" type="Area2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_yq1mv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -2.35619
+texture = ExtResource("2_44csi")
+region_enabled = true
+region_rect = Rect2(64, 192, 64, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tkkav")

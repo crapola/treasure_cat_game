@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://cee5ihhmo5q8i"]
+
+[ext_resource type="Script" path="res://debug/browse_csv.gd" id="1_3k0tr"]
+[ext_resource type="Script" path="res://addons/myplugin/csv/csv_view.gd" id="1_w6s3l"]
+
+[node name="BrowseCSV" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3k0tr")
+
+[node name="CSVView" type="ItemList" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 77.0
+offset_right = 1152.0
+offset_bottom = 648.0
+auto_height = true
+item_count = 1
+same_column_width = true
+item_0/text = "No data"
+script = ExtResource("1_w6s3l")
+
+[node name="OptionButton" type="OptionButton" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 168.0
+offset_top = 31.0
+offset_right = 311.0
+offset_bottom = 62.0
+tooltip_text = "Current file."
+allow_reselect = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 98.0
+offset_bottom = 26.0
+text = "CSV Browser"
+
+[node name="Directory" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 31.0
+offset_right = 150.0
+offset_bottom = 62.0
+tooltip_text = "Directory."
+text = "user://"
+placeholder_text = "Directory"
+
+[connection signal="item_selected" from="OptionButton" to="." method="_OptionButton_item_selected"]
+[connection signal="text_submitted" from="Directory" to="." method="_Directory_text_submitted"]

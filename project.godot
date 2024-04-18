@@ -1,0 +1,64 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Treasure Cat Game"
+config/description="Help the cat collect treasure and defeat enemies."
+run/main_scene="res://title.tscn"
+config/features=PackedStringArray("4.2", "Mobile")
+config/icon="res://icon.png"
+
+[autoload]
+
+Debug="*res://debug/debug.gd"
+Preload="*res://preload/preload.gd"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/unsafe_property_access=1
+gdscript/warnings/unsafe_method_access=1
+gdscript/warnings/unsafe_cast=1
+gdscript/warnings/unsafe_call_argument=1
+
+[display]
+
+window/size/resizable=false
+
+[editor]
+
+movie_writer/movie_file="D:/catgame.avi"
+naming/default_signal_callback_name="_{NodeName}_{signal_name}"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/myplugin/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "yellow",
+"res://debug/": "red"
+}
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_4="Item"
+2d_physics/layer_5="Shop"
+2d_physics/layer_10="Static"
+
+[rendering]
+
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.12549, 0.121569, 0.12549, 1)

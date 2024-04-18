@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1c4yodolgxrp"]
+
+[ext_resource type="Script" path="res://bomb.gd" id="1_1ykxh"]
+[ext_resource type="Texture2D" uid="uid://kyfhsr4uad6f" path="res://circle.png" id="3_7v8l1"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="3_gssg1"]
+[ext_resource type="AudioStream" uid="uid://ce1mwt6olr02b" path="res://sound/fuse.wav" id="4_2h46e"]
+[ext_resource type="AudioStream" uid="uid://bov63h1e6q5ec" path="res://sound/tick.wav" id="5_wxfw1"]
+[ext_resource type="AudioStream" uid="uid://bse58ofm053jc" path="res://sound/boom.wav" id="6_38pnr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jk16v"]
+radius = 256.0
+
+[node name="Bomb" type="Area2D"]
+collision_layer = 0
+collision_mask = 3
+monitorable = false
+script = ExtResource("1_1ykxh")
+
+[node name="BlastCollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jk16v")
+
+[node name="BombSprite" type="Sprite2D" parent="."]
+position = Vector2(2, -3)
+texture = ExtResource("3_gssg1")
+region_enabled = true
+region_rect = Rect2(192, 128, 64, 64)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+autostart = true
+
+[node name="FloatingText" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -12.0
+offset_right = 5.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(5, 12)
+text = "0"
+horizontal_alignment = 1
+
+[node name="BlastVisual" type="Node2D" parent="."]
+
+[node name="BlastCircleSprite" type="Sprite2D" parent="BlastVisual"]
+self_modulate = Color(1, 0.941176, 0.313726, 1)
+scale = Vector2(0.016, 0.016)
+texture = ExtResource("3_7v8l1")
+
+[node name="Sprite2D" type="Sprite2D" parent="BlastVisual"]
+scale = Vector2(0.008, 0.008)
+texture = ExtResource("3_gssg1")
+region_enabled = true
+region_rect = Rect2(128, 192, 64, 64)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(32, 0)
+
+[node name="Fuse" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_2h46e")
+volume_db = -12.0
+autoplay = true
+
+[node name="Tick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_wxfw1")
+volume_db = -5.0
+
+[node name="Boom" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_38pnr")
+pitch_scale = 0.5
+
+[connection signal="timeout" from="Timer" to="." method="_Timer_timeout"]

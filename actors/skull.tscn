@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://c3xy18lnk53tl"]
+
+[ext_resource type="Script" path="res://actors/actor.gd" id="1_pmrx7"]
+[ext_resource type="Script" path="res://velocity.gd" id="3_4dpon"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="3_oc4xt"]
+[ext_resource type="Script" path="res://sprite.gd" id="4_qe354"]
+[ext_resource type="AudioStream" uid="uid://bupy3cutp0f0s" path="res://sound/bones.wav" id="5_bgp4u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qcu88"]
+radius = 28.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pqwdv"]
+random_pitch = 1.05
+streams_count = 1
+stream_0/stream = ExtResource("5_bgp4u")
+stream_0/weight = 1.0
+
+[node name="SkullActor" type="Node2D" node_paths=PackedStringArray("hit_sound", "velocity_component")]
+script = ExtResource("1_pmrx7")
+hit_sound = NodePath("AudioStreamPlayer2D")
+velocity_component = NodePath("SkullBody/Velocity")
+wage = 0
+
+[node name="SkullBody" type="CharacterBody2D" parent="."]
+collision_layer = 2
+collision_mask = 514
+motion_mode = 1
+
+[node name="Velocity" type="Node" parent="SkullBody"]
+script = ExtResource("3_4dpon")
+
+[node name="BodyShape" type="CollisionShape2D" parent="SkullBody"]
+shape = SubResource("CircleShape2D_qcu88")
+debug_color = Color(1, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="SkullBody"]
+texture = ExtResource("3_oc4xt")
+region_enabled = true
+region_rect = Rect2(128, 0, 64, 64)
+script = ExtResource("4_qe354")
+faction = -1
+
+[node name="Timer" type="Timer" parent="SkullBody"]
+wait_time = 2.0
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_pqwdv")
+volume_db = -5.0
+
+[connection signal="timeout" from="SkullBody/Timer" to="SkullBody/Velocity" method="random" binds= [64.0]]
