@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn7mw27fsfr0u"]
+
+[ext_resource type="Script" uid="uid://d2flf77va17h1" path="res://brick/bricks.gd" id="1_18tb3"]
+[ext_resource type="Texture2D" uid="uid://s3elppn7uxq" path="res://brick/brick.svg" id="1_hjgwr"]
+
+[node name="Bricks" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 128.0
+script = ExtResource("1_18tb3")
+
+[node name="Brick3" type="TextureRect" parent="."]
+self_modulate = Color(0.3137255, 0.2509804, 0.3137255, 1)
+z_index = -1
+z_as_relative = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 96.0
+texture = ExtResource("1_hjgwr")
+
+[node name="Brick1" type="TextureRect" parent="."]
+self_modulate = Color(0.3137255, 0.2509804, 0.3137255, 1)
+z_index = -1
+z_as_relative = false
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_hjgwr")
+
+[node name="Brick2" type="TextureRect" parent="."]
+self_modulate = Color(0.3137255, 0.2509804, 0.3137255, 1)
+z_index = -1
+z_as_relative = false
+layout_mode = 0
+offset_left = 64.0
+offset_right = 128.0
+offset_bottom = 64.0
+texture = ExtResource("1_hjgwr")
+
+[node name="Brick4" type="TextureRect" parent="."]
+self_modulate = Color(0.3137255, 0.2509804, 0.3137255, 1)
+z_index = -1
+z_as_relative = false
+layout_mode = 0
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 128.0
+texture = ExtResource("1_hjgwr")
+
+[node name="Brick5" type="TextureRect" parent="."]
+self_modulate = Color(0.3137255, 0.2509804, 0.3137255, 1)
+z_index = -1
+z_as_relative = false
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("1_hjgwr")

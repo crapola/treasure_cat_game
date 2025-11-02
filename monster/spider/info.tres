@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Monster" load_steps=3 format=3 uid="uid://b8rupfdvqc4hv"]
+
+[ext_resource type="Script" uid="uid://eoick68ky6fg" path="res://monster/monster.gd" id="1_1lqlj"]
+[ext_resource type="PackedScene" uid="uid://debrbi1ualuku" path="res://monster/spider/spider.tscn" id="1_rtijx"]
+
+[resource]
+script = ExtResource("1_1lqlj")
+price = 150
+scene = ExtResource("1_rtijx")
+metadata/_custom_type_script = "uid://eoick68ky6fg"

@@ -1,6 +1,116 @@
-[gd_scene load_steps=2 format=3 uid="uid://byua04ah1ctkx"]
+[gd_scene load_steps=5 format=3 uid="uid://byua04ah1ctkx"]
 
-[ext_resource type="Script" path="res://game_over.gd" id="1_me3mo"]
+[ext_resource type="Script" uid="uid://b583bfxkqqdsh" path="res://game_over.gd" id="1_me3mo"]
+
+[sub_resource type="Animation" id="Animation_yxx3c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Defeat:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Defeat:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(-0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_y26ei"]
+resource_name = "fade"
+length = 2.0
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Defeat:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 2, 1),
+"update": 0,
+"values": [Vector2(4, 4), Vector2(0.5, 0.5), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Defeat:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../ColorRect:color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0), Color(1, 0, 0, 0.5), Color(0.6666667, 0, 0, 0.1254902)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ccer4"]
+_data = {
+&"RESET": SubResource("Animation_yxx3c"),
+&"animation": SubResource("Animation_y26ei")
+}
 
 [node name="GameOver" type="Control"]
 layout_mode = 3
@@ -11,37 +121,64 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_me3mo")
 
-[node name="Message" type="Label" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 0)
+
+[node name="Defeat" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -38.0
-offset_top = -13.0
-offset_right = 38.0
-offset_bottom = 13.0
+offset_left = -49.0
+offset_top = -19.5
+offset_right = 49.0
+offset_bottom = 19.5
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(49, 19.5)
+size_flags_stretch_ratio = 0.2
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 text = "Defeat!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ClickToStart" type="Label" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Button")
+libraries = {
+&"": SubResource("AnimationLibrary_ccer4")
+}
+autoplay = "animation"
+
+[node name="Button" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.55
-anchor_right = 0.5
-anchor_bottom = 0.55
-offset_left = -118.5
-offset_top = -13.0
-offset_right = 118.5
-offset_bottom = 13.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Press mouse button to restart."
+disabled = true
+text = "
+
+
+Press mouse button to restart."
+flat = true
+
+[node name="Timer" type="Timer" parent="Button"]
+one_shot = true
+autostart = true
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="button_down" from="Button" to="." method="restart_game"]
+[connection signal="timeout" from="Button/Timer" to="Button" method="set_disabled" flags=6 binds= [false]]

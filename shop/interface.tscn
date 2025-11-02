@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dmgxxjk2picvl"]
 
-[ext_resource type="Script" path="res://shop/interface.gd" id="1_1uodc"]
-[ext_resource type="Script" path="res://shop/selection_rectangle.gd" id="3_falkk"]
-[ext_resource type="Script" path="res://shop/button_item.gd" id="3_j5gk7"]
+[ext_resource type="Script" uid="uid://h7nxyy2avfts" path="res://shop/interface.gd" id="1_1uodc"]
+[ext_resource type="Script" uid="uid://c5x7rautjlkxu" path="res://shop/selection_rectangle.gd" id="3_falkk"]
+[ext_resource type="Script" uid="uid://ics3id3adm5t" path="res://shop/button_item.gd" id="3_j5gk7"]
 [ext_resource type="AudioStream" uid="uid://b8ywpjcid54sc" path="res://sound/shop.wav" id="4_mpnad"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ocjm5"]

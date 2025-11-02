@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b3a4qdheg1cll"]
 
 [ext_resource type="Texture2D" uid="uid://kyfhsr4uad6f" path="res://circle.png" id="1_s1yry"]
-[ext_resource type="Script" path="res://eye.gd" id="2_417wm"]
+[ext_resource type="Script" uid="uid://busk0icobfejm" path="res://eye.gd" id="2_417wm"]
 
 [node name="Eye" type="Sprite2D"]
 self_modulate = Color(0, 0, 0, 1)

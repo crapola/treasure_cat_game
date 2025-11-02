@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://debrbi1ualuku"]
 
-[ext_resource type="Script" path="res://actors/spider.gd" id="1_pkd6b"]
-[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_la647"]
-[ext_resource type="Script" path="res://velocity.gd" id="3_odcof"]
-[ext_resource type="Script" path="res://sprite.gd" id="3_t2mlb"]
-[ext_resource type="AudioStream" uid="uid://cdmm6j1nf3wwk" path="res://sound/spider.wav" id="5_02qfk"]
-[ext_resource type="Script" path="res://feeding.gd" id="5_gkibm"]
+[ext_resource type="Script" uid="uid://bj62cxu60nrws" path="res://monster/spider/spider.gd" id="1_6bror"]
+[ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_efi0v"]
+[ext_resource type="Script" uid="uid://dvu6foa724qyl" path="res://sprite.gd" id="3_p03n5"]
+[ext_resource type="Script" uid="uid://kqcs7dpvjcvl" path="res://velocity.gd" id="4_8rmdo"]
+[ext_resource type="Script" uid="uid://dg4gvhugnuhwq" path="res://feeding.gd" id="5_6c8el"]
+[ext_resource type="AudioStream" uid="uid://cdmm6j1nf3wwk" path="res://sound/spider.wav" id="6_u3g12"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2h5sy"]
 radius = 15.0
@@ -13,11 +13,10 @@ radius = 15.0
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kmsm5"]
 playback_mode = 2
 streams_count = 1
-stream_0/stream = ExtResource("5_02qfk")
-stream_0/weight = 1.0
+stream_0/stream = ExtResource("6_u3g12")
 
 [node name="Spider" type="Node2D" node_paths=PackedStringArray("hit_sound", "velocity_component")]
-script = ExtResource("1_pkd6b")
+script = ExtResource("1_6bror")
 health = 15
 hit_sound = NodePath("AudioStreamPlayer2D")
 velocity_component = NodePath("Area2D/Velocity")
@@ -29,20 +28,20 @@ collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="Area2D"]
 rotation = 1.5708
-texture = ExtResource("2_la647")
+texture = ExtResource("2_efi0v")
 region_enabled = true
 region_rect = Rect2(192, 0, 64, 64)
-script = ExtResource("3_t2mlb")
+script = ExtResource("3_p03n5")
 faction = -1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_2h5sy")
 
 [node name="Velocity" type="Node" parent="Area2D"]
-script = ExtResource("3_odcof")
+script = ExtResource("4_8rmdo")
 
 [node name="Feeding" type="Node" parent="Area2D"]
-script = ExtResource("5_gkibm")
+script = ExtResource("5_6c8el")
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0

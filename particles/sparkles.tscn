@@ -9,5 +9,5 @@ region = Rect2(192, 192, 64, 64)
 
 [node name="Sparkles" type="GPUParticles2D"]
 amount = 4
-process_material = ExtResource("1_ssidw")
 texture = SubResource("AtlasTexture_34i0j")
+process_material = ExtResource("1_ssidw")

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://clni1ru5wvxvr"]
 
-[ext_resource type="Script" path="res://actors/actor.gd" id="1_lg7th"]
+[ext_resource type="Script" uid="uid://dbqvqsudtd302" path="res://actors/actor.gd" id="1_lg7th"]
 [ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_vy5la"]
-[ext_resource type="Script" path="res://collider_combat.gd" id="3_irqge"]
+[ext_resource type="Script" uid="uid://baroqrqml0udc" path="res://collider_combat.gd" id="3_irqge"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkkav"]
 size = Vector2(45, 20)

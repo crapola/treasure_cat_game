@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cee5ihhmo5q8i"]
 
-[ext_resource type="Script" path="res://debug/browse_csv.gd" id="1_3k0tr"]
-[ext_resource type="Script" path="res://addons/myplugin/csv/csv_view.gd" id="1_w6s3l"]
+[ext_resource type="Script" uid="uid://b7rq101ggah1g" path="res://debug/browse_csv.gd" id="1_3k0tr"]
+[ext_resource type="Script" uid="uid://cbsm1fq1jh53" path="res://addons/myplugin/csv/csv_view.gd" id="1_w6s3l"]
 
 [node name="BrowseCSV" type="Control"]
 layout_mode = 3

@@ -1,5 +1,7 @@
 extends Node
 
+## Preload autoload
+##
 ## Shader/material preload autoload for the web version.
 
 const PRELOAD_SCENE:String="res://preload/preload.tscn"

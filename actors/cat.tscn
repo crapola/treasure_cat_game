@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://ds6aowe1xgw5y"]
 
-[ext_resource type="Script" path="res://actors/cat.gd" id="1_ix20d"]
+[ext_resource type="Script" uid="uid://bv7wgpse4d1pe" path="res://actors/cat.gd" id="1_ix20d"]
 [ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_tcgvb"]
-[ext_resource type="Script" path="res://velocity.gd" id="3_3f20s"]
-[ext_resource type="Script" path="res://collider_combat.gd" id="4_60n8w"]
+[ext_resource type="Script" uid="uid://kqcs7dpvjcvl" path="res://velocity.gd" id="3_3f20s"]
+[ext_resource type="Script" uid="uid://baroqrqml0udc" path="res://collider_combat.gd" id="4_60n8w"]
 [ext_resource type="PackedScene" uid="uid://bovhp34xkvwyp" path="res://hand.tscn" id="5_hy38g"]
 [ext_resource type="AudioStream" uid="uid://bpbhnr8omsg8t" path="res://sound/meow.wav" id="6_d5a1w"]
 
@@ -68,8 +68,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m8qdr"]
 _data = {
-"RESET": SubResource("Animation_46eoh"),
-"hurt": SubResource("Animation_cju0p")
+&"RESET": SubResource("Animation_46eoh"),
+&"hurt": SubResource("Animation_cju0p")
 }
 
 [node name="CatActor" type="Node2D" node_paths=PackedStringArray("hand", "hit_sound", "velocity_component")]
@@ -99,7 +99,7 @@ script = ExtResource("3_3f20s")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CatArea"]
 libraries = {
-"": SubResource("AnimationLibrary_m8qdr")
+&"": SubResource("AnimationLibrary_m8qdr")
 }
 
 [node name="Inventory" type="Node" parent="CatArea"]

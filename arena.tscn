@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5smwok7e4w63"]
+[gd_scene load_steps=5 format=3 uid="uid://c5smwok7e4w63"]
 
-[ext_resource type="Script" path="res://arena.gd" id="1_17ypj"]
+[ext_resource type="Script" uid="uid://dr6y1d4028qbn" path="res://arena.gd" id="1_17ypj"]
+[ext_resource type="Script" uid="uid://bfyfyhwwerlts" path="res://addons/myplugin/random_container/random_container.gd" id="3_27ga2"]
+[ext_resource type="PackedScene" uid="uid://bn7mw27fsfr0u" path="res://brick/bricks.tscn" id="4_h0wof"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubfh8"]
 
 [node name="ArenaArea" type="Area2D"]
 collision_layer = 0
@@ -9,6 +13,64 @@ script = ExtResource("1_17ypj")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -10
-offset_right = 40.0
-offset_bottom = 40.0
-color = Color(0.25098, 0.184314, 0.25098, 1)
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1088.0
+offset_bottom = 576.0
+color = Color(0.2509804, 0.1882353, 0.2509804, 1)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ubfh8")
+
+[node name="RandomContainer1" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1088.0
+offset_bottom = 192.0
+script = ExtResource("3_27ga2")
+metadata/_custom_type_script = "uid://bfyfyhwwerlts"
+
+[node name="BricksContainer" parent="RandomContainer1" instance=ExtResource("4_h0wof")]
+layout_mode = 1
+
+[node name="RandomContainer2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 192.0
+offset_right = 512.0
+offset_bottom = 384.0
+script = ExtResource("3_27ga2")
+metadata/_custom_type_script = "uid://bfyfyhwwerlts"
+
+[node name="BricksContainer" parent="RandomContainer2" instance=ExtResource("4_h0wof")]
+layout_mode = 1
+
+[node name="RandomContainer3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 512.0
+offset_top = 192.0
+offset_right = 1088.0
+offset_bottom = 384.0
+script = ExtResource("3_27ga2")
+metadata/_custom_type_script = "uid://bfyfyhwwerlts"
+
+[node name="BricksContainer" parent="RandomContainer3" instance=ExtResource("4_h0wof")]
+layout_mode = 1
+
+[node name="RandomContainer4" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 384.0
+offset_right = 1088.0
+offset_bottom = 576.0
+script = ExtResource("3_27ga2")
+metadata/_custom_type_script = "uid://bfyfyhwwerlts"
+
+[node name="BricksContainer" parent="RandomContainer4" instance=ExtResource("4_h0wof")]
+layout_mode = 1

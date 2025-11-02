@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dqcixvetoiitt"]
 
-[ext_resource type="Script" path="res://items/gold_bag.gd" id="1_70u6l"]
+[ext_resource type="Script" uid="uid://b22xmv0cfer1i" path="res://shop/items/gold_bag.gd" id="1_70u6l"]
 [ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_4h860"]
 [ext_resource type="AudioStream" uid="uid://bsagfhjbos2gv" path="res://sound/coin.wav" id="3_oygn3"]
 
@@ -77,8 +77,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_67sn6"]
 _data = {
-"RESET": SubResource("Animation_aghhp"),
-"picked up": SubResource("Animation_i80ys")
+&"RESET": SubResource("Animation_aghhp"),
+&"picked up": SubResource("Animation_i80ys")
 }
 
 [node name="GoldBag" type="Area2D"]
@@ -95,7 +95,7 @@ region_rect = Rect2(64, 128, 64, 64)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_67sn6")
+&"": SubResource("AnimationLibrary_67sn6")
 }
 speed_scale = 4.0
 

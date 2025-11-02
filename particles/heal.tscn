@@ -1,8 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://db8kd5cwg072y"]
 
 [ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="1_l6kgh"]
-[ext_resource type="Script" path="res://addons/myplugin/particles/particles_one_shot.gd" id="2_t6nhb"]
+[ext_resource type="Script" uid="uid://dfbtmkli8d8u2" path="res://addons/myplugin/particles/particles_one_shot.gd" id="2_t6nhb"]
 [ext_resource type="AudioStream" uid="uid://cdp2fum6w06dl" path="res://sound/heal.wav" id="3_ukh33"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tad6r"]
+atlas = ExtResource("1_l6kgh")
+region = Rect2(192, 192, 64, 64)
 
 [sub_resource type="Gradient" id="Gradient_tidq0"]
 offsets = PackedFloat32Array(0, 0.7, 1)
@@ -31,18 +35,14 @@ gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_rvygi")
 color_ramp = SubResource("GradientTexture1D_l64rk")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tad6r"]
-atlas = ExtResource("1_l6kgh")
-region = Rect2(192, 192, 64, 64)
-
 [node name="HealParticles" type="GPUParticles2D"]
 modulate = Color(0, 1, 1, 1)
 scale = Vector2(0.25, 0.25)
-process_material = SubResource("ParticleProcessMaterial_vnp2f")
 texture = SubResource("AtlasTexture_tad6r")
 lifetime = 0.5
 explosiveness = 0.7
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_vnp2f")
 script = ExtResource("2_t6nhb")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

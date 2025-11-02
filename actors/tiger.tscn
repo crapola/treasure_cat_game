@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://diesrth1mrwjt"]
 
-[ext_resource type="Script" path="res://actors/actor.gd" id="1_3ns8i"]
+[ext_resource type="Script" uid="uid://dbqvqsudtd302" path="res://actors/actor.gd" id="1_3ns8i"]
 [ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_c4c44"]
-[ext_resource type="Script" path="res://sprite.gd" id="3_dpeqx"]
-[ext_resource type="Script" path="res://velocity.gd" id="4_w7sk3"]
-[ext_resource type="Script" path="res://collider_combat.gd" id="5_q2hqh"]
-[ext_resource type="Script" path="res://roam.gd" id="6_ajlgp"]
-[ext_resource type="Script" path="res://chase.gd" id="6_g118g"]
+[ext_resource type="Script" uid="uid://dvu6foa724qyl" path="res://sprite.gd" id="3_dpeqx"]
+[ext_resource type="Script" uid="uid://kqcs7dpvjcvl" path="res://velocity.gd" id="4_w7sk3"]
+[ext_resource type="Script" uid="uid://baroqrqml0udc" path="res://collider_combat.gd" id="5_q2hqh"]
+[ext_resource type="Script" uid="uid://i5uuc12e1l2s" path="res://roam.gd" id="6_ajlgp"]
+[ext_resource type="Script" uid="uid://d3qq7xumvaf7h" path="res://chase.gd" id="6_g118g"]
 [ext_resource type="AudioStream" uid="uid://br44f65fuqdqj" path="res://sound/tiger.wav" id="6_nwosi"]
-[ext_resource type="Script" path="res://feeding.gd" id="8_v5i55"]
+[ext_resource type="Script" uid="uid://dg4gvhugnuhwq" path="res://feeding.gd" id="8_v5i55"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h52fn"]
 radius = 20.0
@@ -20,7 +20,6 @@ radius = 256.0
 playback_mode = 2
 streams_count = 1
 stream_0/stream = ExtResource("6_nwosi")
-stream_0/weight = 1.0
 
 [node name="Tiger" type="Node2D" node_paths=PackedStringArray("hit_sound", "velocity_component")]
 script = ExtResource("1_3ns8i")

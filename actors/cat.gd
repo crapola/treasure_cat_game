@@ -6,6 +6,11 @@ signal collide_shop # -> main.shop_open()
 @onready var animation:=$CatArea/AnimationPlayer
 
 func _ready()->void:
+	# Wait a little at game start before moving.
+	set_physics_process(false)
+	await get_tree().create_timer(0.25,true,true,false).timeout
+	set_physics_process(true)
+
 	super._ready()
 	# Head swinging loop.
 	rotation=-0.10

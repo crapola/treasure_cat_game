@@ -8,8 +8,7 @@ func _ready()->void:
 	_actor.health_changed.connect(on_hit)
 	_actor.gold_collected.connect(func(_gold:int)->void:
 		set_opacity(0.25)
-		tween_opacity(0.5)
-		)
+		tween_opacity(0.5))
 	tween_opacity(4)
 
 func on_hit(_hp:int)->void:

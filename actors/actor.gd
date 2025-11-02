@@ -134,6 +134,10 @@ func push(velocity:Vector2)->void:
 		velocity_component.velocity+=velocity
 		velocity_component.decelerate()
 
+### Stop AI...
+#func stop()->void:
+	#return
+
 ## Perform melee combat between two actors. Both are damaged and pushed away.
 static func combat(a:Actor,b:Actor)->void:
 	a.damage(1)

@@ -5,15 +5,14 @@
 [ext_resource type="AudioStream" uid="uid://dwn08g06mxa74" path="res://sound/pop.wav" id="2_au3sw"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_uahe1"]
-streams_count = 1
 playback_mode = 2
+streams_count = 1
 stream_0/stream = ExtResource("2_au3sw")
-stream_0/weight = 1.0
 
 [node name="SmokePuff" type="GPUParticles2D"]
-process_material = ExtResource("1_ial7x")
 texture = ExtResource("1_g75ko")
 explosiveness = 1.0
+process_material = ExtResource("1_ial7x")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

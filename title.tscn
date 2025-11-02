@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c3a4lculj5cf3"]
 
-[ext_resource type="Script" path="res://title.gd" id="1_s7q58"]
+[ext_resource type="Script" uid="uid://qviblg3ewina" path="res://title.gd" id="1_s7q58"]
 
 [sub_resource type="FontVariation" id="FontVariation_b6dw3"]
 variation_transform = Transform2D(1, 0.1, 0.1, 1, 0, 0)

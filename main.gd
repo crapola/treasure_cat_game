@@ -21,6 +21,7 @@ var _next_monster:StringName=&"skull"
 func _init()->void:
 	print_debug("main.gd::_init")
 
+
 func _ready()->void:
 	print_debug("main.gd::_ready")
 	Actor.arena_rect=arena_area.get_rectangle()
@@ -41,16 +42,23 @@ func _ready()->void:
 
 	shop_spawner.player_faction=player.faction
 
+	await get_tree().physics_frame
+
 	# Spawn some monsters.
 	player.body.shape_owner_set_disabled(0,true)
 	for i in 4:
 		var n:Actor=preload("res://actors/skull.tscn").instantiate() as Actor
 		spawn_unit(n,1)
+
 		# Avoid center where player is. TODO: jank
 		var center:=arena_area.get_rectangle().get_center()
 		var center_to_n:=n.global_position-center
 		if center_to_n.length()<100:
+			push_warning("%s was too close to player."%n)
 			n.position+=center_to_n.normalized()*100
+
+		await get_tree().physics_frame
+
 	player.body.shape_owner_set_disabled(0,false)
 
 	#spawn_unit(preload("res://clever_skull.tscn").instantiate(),1)
@@ -66,9 +74,16 @@ func end_game(message:String)->void:
 	hud.clock_stop()
 	shop_spawner.free()
 	var n:=preload("res://game_over.tscn").instantiate()
-	(n.get_node("Message") as Label).text=message
 	canvaslayer_ui.add_child(n)
-	actors_root.propagate_call("set_physics_process",[false])
+
+	await get_tree().create_timer(0.5,true,true,false).timeout
+
+	# Stop every Actor.
+	get_tree().get_root().find_children("","Actor",true,false).all(func(a:Actor):
+		#a.set_physics_process(false)
+		a.process_mode=PROCESS_MODE_DISABLED
+		return true
+		)
 
 func enemy_count()->int:
 	var count:int=0
@@ -81,27 +96,29 @@ func enemy_count()->int:
 ## The monster faction AI.
 func monster_buy()->void:
 	const hp=15
+	const spinf:Monster=preload("uid://b8rupfdvqc4hv")
+
 	const monsters:Dictionary={
-		&"skull":10*hp,
-		&"spider":10*hp,
-		&"clever_skull":10*hp+25,
-		&"ghost":10*hp+25,
-		&"bomb":250
+		&"skull":[10*hp,preload("res://actors/skull.tscn")],
+		&"spider":[spinf.price,spinf.scene],#[10*hp,preload("res://spider/spider.tscn")],
+		&"clever_skull":[10*hp+25,preload("res://actors/clever_skull.tscn")],
+		&"ghost":[10*hp+25,preload("res://actors/ghost.tscn")],
+		&"bomb":[250,preload("res://bomb.tscn")],
 		}
-	const actor_path:StringName=&"res://actors/"
+	#const actor_path:StringName=&"res://actors/"
 	# TODO: Can't have safe line with Dictionaries.
-	if factions[1].gold>=monsters[_next_monster]+25:
+	if factions[1].gold>=monsters[_next_monster][0]+25:
 		if _next_monster==&"bomb":
 			var scene:=load(_next_monster+".tscn") as PackedScene
 			var n:Node2D=scene.instantiate() as Node2D
 			n.position=arena_area.random_free_point()
 			actors_root.add_child(n,true) # TODO refactor
 		else:
-			var scene:=load(actor_path+_next_monster+".tscn") as PackedScene
+			var scene=monsters[_next_monster][1]
 			var n:Actor=scene.instantiate() as Actor
 			spawn_unit(n,1)
 			@warning_ignore("unsafe_cast")
-			factions[1].gold-=(monsters[_next_monster] as int)
+			factions[1].gold-=(monsters[_next_monster][0] as int)
 		_next_monster=monsters.keys().pick_random()
 
 func pay_wages()->void:
@@ -140,13 +157,14 @@ func shop_open(shop:Shop)->void:
 
 ## Soawn a gold bag somewhere.
 func spawn_bag()->void:
-	var n:GoldBag=preload("res://items/gold_bag.tscn").instantiate() as GoldBag
+	var n:GoldBag=preload("uid://dqcixvetoiitt").instantiate() as GoldBag
 	n.position=arena_area.random_free_point()
 	gold_spawned_total+=n.gold
 	actors_root.add_child(n,true)
 
 func spawn_unit(actor:Actor,faction:int)->void:
-	actor.position=arena_area.random_free_point()
+	var actor_radius=actor.body.shape_owner_get_shape(0,0).radius
+	actor.position=arena_area.random_free_point(actor_radius+2.0)
 	actor.faction=factions[faction]
 	actors_root.add_child(actor,true)
 

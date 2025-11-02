@@ -11,5 +11,4 @@ func _ready()->void:
 	_initial_health=_actor.health
 	_actor.killed.connect(func(_other:Actor)->void:
 		# Double current health, capped at starting value.
-		_actor.health=mini(_initial_health,_actor.health*2)
-		)
+		_actor.health=mini(_initial_health,_actor.health*2))

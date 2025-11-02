@@ -47,8 +47,7 @@ func _find_gold_bag()->GoldBag:
 		return a is GoldBag ) as Array[Area2D]
 		#return a.collision_layer==4) as Array[Area2D]
 	stuff.sort_custom(func(a:GoldBag,b:GoldBag)->bool:
-		return _bag_value(a)>_bag_value(b)
-		)
+		return _bag_value(a)>_bag_value(b))
 	return stuff[0] as GoldBag if stuff else null
 
 func _find_item()->Item:

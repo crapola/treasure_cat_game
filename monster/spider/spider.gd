@@ -6,7 +6,7 @@ var web:SpiderWeb
 
 func _ready()->void:
 	super._ready()
-	web=preload("res://spider_web.tscn").instantiate() as SpiderWeb
+	web=preload("spider_web.tscn").instantiate() as SpiderWeb
 	web.spider=self
 	web.global_position=global_position
 	web.prey_entered.connect(_on_prey_entered)
@@ -20,7 +20,7 @@ func _on_prey_entered(_prey:Actor)->void:
 func _on_prey_exited(_prey:Actor)->void:
 	pass
 
-func _Timer_timeout()->void:
+func _Timer_timeout()->void: # TODO: rename
 	if web.prey():
 		# Chase prey.
 		var dist:float=body.global_position.distance_to(web.prey().global_position)

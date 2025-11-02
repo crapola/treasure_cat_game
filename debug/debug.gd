@@ -1,16 +1,16 @@
 extends Node
 
 func _init()->void:
-	print_debug()
+	print_debug("Debug init")
 
 func _ready()->void:
-	print_debug()
+	print_debug("Debug ready")
 
-	## Create debug interface.
+	# Create debug interface.
 	var ui:=preload("res://debug/debugging_interface.tscn").instantiate()
 	get_tree().root.add_child.call_deferred(ui)
 
-	## Statistics injection.
+	# Statistics injection.
 	get_tree().node_added.connect(_on_node_added_to_tree)
 
 func _exit_tree()->void:

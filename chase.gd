@@ -13,8 +13,7 @@ extends Behaviour
 		target=value
 		if target:
 			target.tree_exited.connect(func()->void:
-				target=null
-				)
+				target=null)
 			start()
 		else:
 			stop()

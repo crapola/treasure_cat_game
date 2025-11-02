@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2csu5w2ksssn"]
+
+[ext_resource type="Script" uid="uid://bfyfyhwwerlts" path="res://addons/myplugin/random_container/random_container.gd" id="1_8elat"]
+[ext_resource type="Texture2D" uid="uid://bj0ncu4s88e6p" path="res://icon.svg" id="2_11qsa"]
+
+[node name="Test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RandomContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 153.0
+offset_top = 72.0
+offset_right = 624.0
+offset_bottom = 356.0
+script = ExtResource("1_8elat")
+
+[node name="ColorRect" type="ColorRect" parent="RandomContainer"]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 230.0
+offset_right = 523.38025
+offset_bottom = 387.88562
+
+[node name="ColorRect2" type="ColorRect" parent="RandomContainer"]
+layout_mode = 0
+offset_left = 482.0
+offset_top = 101.0
+offset_right = 530.4144
+offset_bottom = 258.88568
+color = Color(1, 0, 0, 1)
+
+[node name="Icon" type="Sprite2D" parent="RandomContainer"]
+position = Vector2(202, 149)
+texture = ExtResource("2_11qsa")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="RandomContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+border_color = Color(1, 1, 0, 1)
+editor_only = false
+metadata/_edit_lock_ = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="RandomContainer" method="_move_content"]

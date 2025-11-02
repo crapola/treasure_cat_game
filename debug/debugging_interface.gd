@@ -68,8 +68,7 @@ func actor_debug_on(a:Actor)->void:
 		l.text=str(a.health)
 		if a.velocity_component:
 			l.text+="\n"+"v="+str(a.velocity_component.velocity.length())
-			l.text+="\n"+"a="+str(a.velocity_component.acceleration.length())
-		)
+			l.text+="\n"+"a="+str(a.velocity_component.acceleration.length()))
 
 func _Statistics_pressed()->void:
 	var s:=find_child("Stats",false,false)
