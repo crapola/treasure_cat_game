@@ -115,6 +115,7 @@ func monster_buy()->void:
 			actors_root.add_child(n,true) # TODO refactor
 		else:
 			var scene=monsters[_next_monster][1]
+			#scene=monsters[&"ghost"][1]
 			var n:Actor=scene.instantiate() as Actor
 			spawn_unit(n,1)
 			@warning_ignore("unsafe_cast")

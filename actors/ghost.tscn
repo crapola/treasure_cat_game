@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3rv4ld14a2ei"]
+[gd_scene format=3 uid="uid://b3rv4ld14a2ei"]
 
 [ext_resource type="Script" uid="uid://dbqvqsudtd302" path="res://actors/actor.gd" id="1_75m47"]
 [ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_ev3bt"]
@@ -17,36 +17,49 @@ random_volume_offset_db = 1.0
 streams_count = 1
 stream_0/stream = ExtResource("6_cq3jr")
 
-[node name="Ghost" type="Node2D" node_paths=PackedStringArray("hit_sound", "velocity_component")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_bb4oo"]
+radius = 128.0
+
+[node name="Ghost" type="Node2D" unique_id=1394474973 node_paths=PackedStringArray("hit_sound", "velocity_component")]
 script = ExtResource("1_75m47")
 health = 4
 hit_sound = NodePath("HitSound")
 velocity_component = NodePath("Area2D/Velocity")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1253659755]
 collision_layer = 2
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1890430733]
 texture = ExtResource("2_ev3bt")
 region_enabled = true
 region_rect = Rect2(64, 64, 64, 64)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=305475214]
 shape = SubResource("CircleShape2D_2elcu")
 
-[node name="Velocity" type="Node" parent="Area2D"]
+[node name="Velocity" type="Node" parent="Area2D" unique_id=49610870]
 script = ExtResource("3_dnihk")
 
-[node name="Roam" type="Node" parent="Area2D"]
+[node name="Roam" type="Node" parent="Area2D" unique_id=1481234305]
 script = ExtResource("4_vx10e")
 autostart = true
 period = 2.0
 
-[node name="Ghosting" type="Node" parent="Area2D"]
+[node name="Ghosting" type="Node" parent="Area2D" unique_id=288108559]
 script = ExtResource("5_pas2h")
 
-[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=152845562]
 stream = SubResource("AudioStreamRandomizer_xs20j")
 volume_db = -10.0
 pitch_scale = 0.48
+
+[node name="RevealArea2D" type="Area2D" parent="." unique_id=205494745]
+editor_description = "Used to reveal the ghost a bit when player gets close enough."
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RevealArea2D" unique_id=116052457]
+shape = SubResource("CircleShape2D_bb4oo")
+
+[connection signal="area_entered" from="RevealArea2D" to="Area2D/Ghosting" method="_reveal_area_entered"]
+[connection signal="area_exited" from="RevealArea2D" to="Area2D/Ghosting" method="_reveal_area_exited"]
