@@ -3,12 +3,14 @@ extends Area2D
 
 ## Spider web.
 
+const MAX_SCALE:float=4.0
+
 ## An enemy entered the web.
 signal prey_entered(prey)
 ## An enemy exited the web.
 signal prey_exited(prey)
 ## Preys inside the web are slown by this factor.
-@export var slow_factor:float=0.25
+@export var slow_factor:float=0.5
 ## Spider that owns this web.
 @export var spider:Actor
 
@@ -28,6 +30,10 @@ func prey()->Actor:
 func radius()->float:
 	return _circle_shape.radius*scale.x
 
+## Increase size a bit.
+func spin()->void:
+	scale=Vector2.ONE*minf(MAX_SCALE,scale.x+0.1)
+
 func _modify_other_velocity(area:Area2D,factor:float)->void:
 	var actor:Actor=area.owner as Actor
 	assert(area.collision_layer==1,"Web wants to slow non-Player.")
@@ -40,6 +46,7 @@ func _on_area_entered(area:Area2D)->void:
 	_modify_other_velocity(area,slow_factor)
 	_prey=area.owner as Actor
 	prey_entered.emit(area.owner as Actor)
+	scale=Vector2.ONE*maxf(1.0,scale.x-0.05)
 
 func _on_area_exited(area:Area2D)->void:
 	_modify_other_velocity(area,1.0/slow_factor)

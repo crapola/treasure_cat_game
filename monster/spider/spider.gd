@@ -29,7 +29,7 @@ func _Timer_timeout()->void: # TODO: rename
 	else:
 		# Spin web.
 		velocity_component.zero()
-		web.scale+=Vector2.ONE*0.10
+		web.spin()
 		# Roam on web or do nothing.
 		if randi()%2==0:
 			return
