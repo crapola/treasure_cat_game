@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ShopItemInfo" load_steps=5 format=3 uid="uid://cee13q1wm50qu"]
+[gd_resource type="Resource" script_class="ShopItemInfo" format=3 uid="uid://cee13q1wm50qu"]
 
 [ext_resource type="PackedScene" uid="uid://cgbrns2p5i4fw" path="res://shop/items/dagger_pickup.tscn" id="1_bsc4g"]
 [ext_resource type="Script" uid="uid://dsw4hdejqf4gj" path="res://shop/shop_item_info.gd" id="2_s224i"]

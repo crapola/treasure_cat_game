@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds6aowe1xgw5y"]
+[gd_scene format=3 uid="uid://ds6aowe1xgw5y"]
 
 [ext_resource type="Script" uid="uid://bv7wgpse4d1pe" path="res://actors/cat.gd" id="1_ix20d"]
 [ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_tcgvb"]
@@ -72,47 +72,45 @@ _data = {
 &"hurt": SubResource("Animation_cju0p")
 }
 
-[node name="CatActor" type="Node2D" node_paths=PackedStringArray("hand", "hit_sound", "velocity_component")]
+[node name="CatActor" type="Node2D" unique_id=237665048 node_paths=PackedStringArray("hand", "hit_sound", "velocity_component")]
 script = ExtResource("1_ix20d")
 buffs = true
 hand = NodePath("Arm")
-health = 2
+health = 3
 hit_sound = NodePath("AudioStreamPlayer")
 velocity_component = NodePath("CatArea/Velocity")
 wage = 0
 
-[node name="CatArea" type="Area2D" parent="."]
+[node name="CatArea" type="Area2D" parent="." unique_id=1523266675]
 collision_mask = 18
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="CatArea"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CatArea" unique_id=126266329]
 position = Vector2(0, 4)
 shape = SubResource("CircleShape2D_1wgbx")
 
-[node name="Sprite2D" type="Sprite2D" parent="CatArea"]
+[node name="Sprite2D" type="Sprite2D" parent="CatArea" unique_id=1582266750]
 texture = ExtResource("2_tcgvb")
 region_enabled = true
 region_rect = Rect2(128, 64, 64, 64)
 
-[node name="Velocity" type="Node" parent="CatArea"]
+[node name="Velocity" type="Node" parent="CatArea" unique_id=1180637146]
 process_physics_priority = -1
 script = ExtResource("3_3f20s")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CatArea"]
-libraries = {
-&"": SubResource("AnimationLibrary_m8qdr")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CatArea" unique_id=760693951]
+libraries/ = SubResource("AnimationLibrary_m8qdr")
 
-[node name="Inventory" type="Node" parent="CatArea"]
+[node name="Inventory" type="Node" parent="CatArea" unique_id=850629639]
 
-[node name="ColliderCombat" type="Node" parent="CatArea"]
+[node name="ColliderCombat" type="Node" parent="CatArea" unique_id=1871925835]
 script = ExtResource("4_60n8w")
 
-[node name="Arm" parent="." instance=ExtResource("5_hy38g")]
+[node name="Arm" parent="." unique_id=2062607981 instance=ExtResource("5_hy38g")]
 
-[node name="AudioListener2D" type="AudioListener2D" parent="."]
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=771257986]
 current = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1015816136]
 stream = ExtResource("6_d5a1w")
 volume_db = -20.0
 
