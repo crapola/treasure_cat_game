@@ -118,6 +118,7 @@ func monster_buy()->void:
 			#scene=monsters[&"ghost"][1]
 			var n:Actor=scene.instantiate() as Actor
 			spawn_unit(n,1)
+			n.position=_repel_from_player(n.position)
 			@warning_ignore("unsafe_cast")
 			factions[1].gold-=(monsters[_next_monster][0] as int)
 		_next_monster=monsters.keys().pick_random()
@@ -179,3 +180,7 @@ func _on_timer_timeout()->void:
 	monster_buy()
 	player_autobuy()
 	victory_check()
+
+# Push a position away from player.
+func _repel_from_player(pos:Vector2)->Vector2:
+	return pos+player.position.direction_to(pos)*(1-player.position.distance_to(pos)/512)*128

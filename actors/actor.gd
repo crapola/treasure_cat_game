@@ -22,6 +22,7 @@ signal killed(other:Actor)
 	set(value):
 		health=value
 		health_changed.emit(value)
+		#modulate=Color(1.0,health/10.0,health/10.0)
 	get:
 		return health
 ## Sound played upon damage.

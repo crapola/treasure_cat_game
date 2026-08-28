@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://byua04ah1ctkx"]
+[gd_scene format=3 uid="uid://byua04ah1ctkx"]
 
 [ext_resource type="Script" uid="uid://b583bfxkqqdsh" path="res://game_over.gd" id="1_me3mo"]
 
@@ -112,7 +112,7 @@ _data = {
 &"animation": SubResource("Animation_y26ei")
 }
 
-[node name="GameOver" type="Control"]
+[node name="GameOver" type="Control" unique_id=1275391817]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -121,7 +121,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_me3mo")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=943129548]
 z_index = 1
 z_as_relative = false
 layout_mode = 1
@@ -132,20 +132,15 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0, 0, 0)
 
-[node name="Defeat" type="Label" parent="."]
+[node name="Defeat" type="Label" parent="." unique_id=1208780362]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -49.0
-offset_top = -19.5
-offset_right = 49.0
-offset_bottom = 19.5
+anchors_preset = -1
+anchor_top = 0.1
+anchor_right = 1.0
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(49, 19.5)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 size_flags_stretch_ratio = 0.2
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -154,14 +149,12 @@ text = "Defeat!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=114942386]
 root_node = NodePath("../Button")
-libraries = {
-&"": SubResource("AnimationLibrary_ccer4")
-}
-autoplay = "animation"
+libraries/ = SubResource("AnimationLibrary_ccer4")
+autoplay = &"animation"
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=799623860]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -169,13 +162,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 disabled = true
-text = "
-
-
-Press mouse button to restart."
+text = "Press mouse button to restart."
 flat = true
 
-[node name="Timer" type="Timer" parent="Button"]
+[node name="Timer" type="Timer" parent="Button" unique_id=700539706]
 one_shot = true
 autostart = true
 
