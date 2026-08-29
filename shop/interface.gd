@@ -58,8 +58,7 @@ func load_item_resources()->Array[ShopItemInfo]:
 	return available_items
 
 func cancel()->void:
-	get_tree().paused=false
-	queue_free()
+	_close()
 
 func _on_buy_add_item(button_item:ButtonItem)->void:
 	buy.emit(button_item.item)
@@ -67,6 +66,9 @@ func _on_buy_add_item(button_item:ButtonItem)->void:
 	selection_rectangle.collapse()
 	tooltip.text="Bought "+str(button_item.item.resource_name)+"."
 	description.text=""
+	# It was the last one.
+	if items_root.get_child_count()==1:
+		_close()
 
 func _on_item_hover(button_item:ButtonItem)->void:
 	tooltip.text=button_item.item.resource_name+" $"+str(button_item.item.price)
@@ -76,3 +78,7 @@ func _on_item_hover(button_item:ButtonItem)->void:
 func _tooltip_clear()->void:
 	tooltip.text=""
 	description.text=""
+
+func _close()->void:
+	get_tree().paused=false
+	queue_free()

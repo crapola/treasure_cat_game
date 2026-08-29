@@ -183,4 +183,5 @@ func _on_timer_timeout()->void:
 
 # Push a position away from player.
 func _repel_from_player(pos:Vector2)->Vector2:
-	return pos+player.position.direction_to(pos)*(1-player.position.distance_to(pos)/512)*128
+	const radius:float=200
+	return pos+player.position.direction_to(pos)*smoothstep(1,0,player.position.distance_to(pos)/radius)*radius
