@@ -7,7 +7,6 @@ var _revealer:Node2D
 
 func _ready()->void:
 	super._ready()
-	print_debug(_actor.sprite)
 	_actor.health_changed.connect(on_hit)
 	_actor.gold_collected.connect(func(_gold:int)->void:
 		set_opacity(0.25)

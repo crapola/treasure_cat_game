@@ -3,6 +3,8 @@ extends Node
 
 ## Make owning Actor heal from kills.
 
+# FIXME Enemies heal from broken dagger.
+
 var _actor:Actor
 var _initial_health:int
 

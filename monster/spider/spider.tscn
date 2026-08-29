@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://debrbi1ualuku"]
+[gd_scene format=3 uid="uid://debrbi1ualuku"]
 
 [ext_resource type="Script" uid="uid://bj62cxu60nrws" path="res://monster/spider/spider.gd" id="1_6bror"]
 [ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_efi0v"]
@@ -15,18 +15,17 @@ playback_mode = 2
 streams_count = 1
 stream_0/stream = ExtResource("6_u3g12")
 
-[node name="Spider" type="Node2D" node_paths=PackedStringArray("hit_sound", "velocity_component")]
+[node name="Spider" type="Node2D" unique_id=2056428430 node_paths=PackedStringArray("hit_sound", "velocity_component")]
 script = ExtResource("1_6bror")
-health = 15
 hit_sound = NodePath("AudioStreamPlayer2D")
 velocity_component = NodePath("Area2D/Velocity")
-wage = 0
+wage = 2
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1236536885]
 collision_layer = 2
 collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=985193043]
 rotation = 1.5708
 texture = ExtResource("2_efi0v")
 region_enabled = true
@@ -34,21 +33,21 @@ region_rect = Rect2(192, 0, 64, 64)
 script = ExtResource("3_p03n5")
 faction = -1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=136843151]
 shape = SubResource("CircleShape2D_2h5sy")
 
-[node name="Velocity" type="Node" parent="Area2D"]
+[node name="Velocity" type="Node" parent="Area2D" unique_id=956941435]
 script = ExtResource("4_8rmdo")
 
-[node name="Feeding" type="Node" parent="Area2D"]
+[node name="Feeding" type="Node" parent="Area2D" unique_id=181600779]
 script = ExtResource("5_6c8el")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=692499647]
 process_callback = 0
 wait_time = 2.0
 autostart = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1640327173]
 stream = SubResource("AudioStreamRandomizer_kmsm5")
 volume_db = -5.0
 
