@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://clni1ru5wvxvr"]
+[gd_scene format=3 uid="uid://clni1ru5wvxvr"]
 
 [ext_resource type="Script" uid="uid://dbqvqsudtd302" path="res://actors/actor.gd" id="1_lg7th"]
 [ext_resource type="Texture2D" uid="uid://ccey1ffw0yg3t" path="res://objects.png" id="2_vy5la"]
@@ -7,26 +7,26 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tkkav"]
 size = Vector2(45, 20)
 
-[node name="DaggerWeapon" type="Node2D"]
+[node name="DaggerWeapon" type="Node2D" unique_id=1059072909]
 script = ExtResource("1_lg7th")
 clamp_position = false
 health = 7
 wage = 0
 
-[node name="HurtBox" type="Area2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="." unique_id=1619897475]
 position = Vector2(15, 0)
 collision_layer = 0
 collision_mask = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="HurtBox"]
+[node name="Sprite2D" type="Sprite2D" parent="HurtBox" unique_id=387612749]
 position = Vector2(-15, 0)
 rotation = -2.35619
 texture = ExtResource("2_vy5la")
 region_enabled = true
 region_rect = Rect2(64, 192, 64, 64)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=754694658]
 shape = SubResource("RectangleShape2D_tkkav")
 
-[node name="ColliderCombat" type="Node" parent="HurtBox"]
+[node name="ColliderCombat" type="Node" parent="HurtBox" unique_id=371533268]
 script = ExtResource("3_irqge")

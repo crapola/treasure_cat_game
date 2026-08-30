@@ -116,7 +116,10 @@ func monster_buy()->void:
 			actors_root.add_child(n,true) # TODO refactor
 		else:
 			var scene=monsters[_next_monster][1]
+
 			#scene=monsters[&"ghost"][1]
+			#scene=monsters[&"spider"][1]
+
 			var n:Actor=scene.instantiate() as Actor
 			spawn_unit(n,1)
 			n.position=_repel_from_player(n.position)

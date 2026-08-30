@@ -46,7 +46,7 @@ func _init()->void:
 	add_to_group("actor")
 
 func _ready()->void:
-	print_debug("Actor::_ready\n\tname=",name," \n\tsprite=",sprite)
+	#print_debug("Actor::_ready\n\tname=",name," \n\tsprite=",sprite)
 	set_process((body as CharacterBody2D)!=null)
 	set_physics_process(true)
 	if is_processing():

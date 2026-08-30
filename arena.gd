@@ -18,6 +18,7 @@ func _ready()->void:
 	var collision_shape:CollisionShape2D=$CollisionShape2D as CollisionShape2D
 	var rectangle_shape:RectangleShape2D=collision_shape.shape as RectangleShape2D
 	rectangle_shape.size=r.size
+	collision_shape.position=get_viewport_rect().get_center()
 
 ## Get the arena rectangle.
 func get_rectangle()->Rect2:
