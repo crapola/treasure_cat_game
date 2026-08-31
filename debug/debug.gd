@@ -1,5 +1,8 @@
 extends Node
 
+const DebugInterface=preload("res://debug/debugging_interface.gd")
+var interface:DebugInterface
+
 func _init()->void:
 	print_debug("Debug init")
 
@@ -7,8 +10,11 @@ func _ready()->void:
 	print_debug("Debug ready")
 
 	# Create debug interface.
-	var ui:=preload("res://debug/debugging_interface.tscn").instantiate()
-	get_tree().root.add_child.call_deferred(ui)
+	var canvas:=CanvasLayer.new()
+	canvas.layer=2
+	interface=preload("res://debug/debugging_interface.tscn").instantiate()
+	canvas.add_child(interface)
+	get_tree().root.add_child.call_deferred(canvas)
 
 	# Statistics injection.
 	get_tree().node_added.connect(_on_node_added_to_tree)
@@ -20,12 +26,13 @@ func _exit_tree()->void:
 	if main:
 		_game_stats(main.start_time,main.gold_spawned_total,main.factions)
 		ActorStats.actor_stats_csv.save()
-	print("Debug:EOF")
+	print_debug("Debug:EOF")
 
 func _on_node_added_to_tree(n:Node)->void:
 	if n is Actor:
-		print_debug("Debug: Attaching debug stats to actor %s."%n.name)
+		print_debug("Debug: Attaching debug nodes to actor %s."%n.name)
 		n.add_child(ActorStats.new(n as Actor))
+		interface.on_actor_added(n)
 
 func _game_stats(start_time:int,gold_spawned_total:int,factions:Array)->void:
 	print("Game statistics:")

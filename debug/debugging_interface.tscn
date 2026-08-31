@@ -1,11 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj78qa21pocbt"]
+[gd_scene format=3 uid="uid://bj78qa21pocbt"]
 
 [ext_resource type="Script" uid="uid://cc2g7eux25lct" path="res://debug/debugging_interface.gd" id="1_1cqkp"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
-layer = 2
-
-[node name="DebuggingInteface" type="Control" parent="."]
+[node name="DebuggingInteface" type="Control" unique_id=1044577258]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +12,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_1cqkp")
 
-[node name="HFlowContainer" type="HFlowContainer" parent="DebuggingInteface"]
+[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=1427514584]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -23,13 +20,13 @@ offset_bottom = 31.0
 grow_horizontal = 2
 alignment = 2
 
-[node name="Statistics" type="Button" parent="DebuggingInteface/HFlowContainer"]
+[node name="Statistics" type="Button" parent="HFlowContainer" unique_id=1511490335]
 layout_mode = 2
 text = "Statistics"
 
-[node name="DebugToggle" type="CheckBox" parent="DebuggingInteface/HFlowContainer"]
+[node name="DebugToggle" type="CheckBox" parent="HFlowContainer" unique_id=59005107]
 layout_mode = 2
-text = "Debug info"
+text = "Show actors info"
 
-[connection signal="pressed" from="DebuggingInteface/HFlowContainer/Statistics" to="DebuggingInteface" method="_Statistics_pressed"]
-[connection signal="toggled" from="DebuggingInteface/HFlowContainer/DebugToggle" to="DebuggingInteface" method="_DebugToggle_toggled"]
+[connection signal="pressed" from="HFlowContainer/Statistics" to="." method="_Statistics_pressed"]
+[connection signal="toggled" from="HFlowContainer/DebugToggle" to="." method="_DebugToggle_toggled"]

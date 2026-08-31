@@ -10,9 +10,8 @@ func _ready()->void:
 	_actor=owner as Actor
 	_initial_health=_actor.health
 	_actor.killed.connect(func(_other:Actor)->void:
-		# FIXME bad coding.
+		# Bad coding, but acceptable as long as the dagger is the only weapon.
 		if _other.scene_file_path!="res://actors/dagger_weapon.tscn":
-			@warning_ignore("integer_division")
-			var h:=1+_initial_health/4
+			var h:int=maxi(1,int(_initial_health/4.0))
 			_actor.health=mini(_initial_health,_actor.health+h)
 		)

@@ -2,16 +2,19 @@ extends Control
 
 const GAME_NODE_PATH:String="/root/Main"
 
+@onready var debug_toggle:CheckBox=$HFlowContainer/DebugToggle
+
 func game_is_running()->bool:
 	return get_node_or_null(GAME_NODE_PATH)!=null
 
+func on_actor_added(actor:Actor)->void:
+	var ai:=preload("res://debug/actor_info.tscn").instantiate()
+	actor.add_child(ai)
+	ai.visible=debug_toggle.button_pressed
+
 func _DebugToggle_toggled(button_pressed:bool)->void:
-	var actors:=get_tree().get_nodes_in_group("actor") as Array[Node]
-	for a:Actor in actors:
-		if button_pressed:
-			actor_debug_on(a)
-		else:
-			actor_debug_off(a)
+	for n in get_tree().get_nodes_in_group(&"debug"):
+		n.visible=button_pressed
 
 func _input(event:InputEvent)->void:
 	var ik:InputEventKey=event as InputEventKey
@@ -49,26 +52,6 @@ func _input(event:InputEvent)->void:
 			"M":
 				print_debug("Cheat give monsters gold.")
 				game.factions[1].gold=1000
-
-func actor_debug_off(a:Actor)->void:
-	if a.get_node_or_null("DebugLabel"):
-		a.get_node("DebugLabel").free()
-
-func actor_debug_on(a:Actor)->void:
-	var l:=Label.new()
-	l.position=Vector2(0,32)
-	l.text="0"
-	l.name="DebugLabel"
-	a.add_child(l)
-	var t:=Timer.new()
-	l.add_child(t)
-	t.start(0.1)
-	t.timeout.connect(func()->void:
-		l.rotation=-a.global_rotation
-		l.text=str(a.health)
-		if a.velocity_component:
-			l.text+="\n"+"v="+str(a.velocity_component.velocity.length())
-			l.text+="\n"+"a="+str(a.velocity_component.acceleration.length()))
 
 func _Statistics_pressed()->void:
 	var s:=find_child("Stats",false,false)
