@@ -16,6 +16,10 @@ func has_item()->bool:
 	assert(_hand)
 	return _hand.get_child_count()>0
 
+## Get the item.
+func get_item()->Node2D:
+	return _hand.get_child(0)
+
 ## Give item.
 func give_item(node:Node2D)->void:
 	node.position=Vector2.ZERO

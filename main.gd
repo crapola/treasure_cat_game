@@ -36,6 +36,10 @@ func _ready()->void:
 	player.faction=factions[0]
 	player.collide_shop.connect(shop_open)
 	player.health_changed.connect(hud.player_info_update.bind(player).unbind(1))
+	player.item_collected.connect(hud.player_info_update.bind(player).unbind(1))
+	player.item_collected.connect(func(i):
+		i.health_changed.connect(hud.player_info_update.bind(player).unbind(1))
+		)
 	player.health=player.health#   +10
 	player.global_position=get_viewport_rect().get_center()
 	player.tree_exiting.connect(end_game.bind("Defeat!"),CONNECT_DEFERRED)

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cylvvd44cafxw"]
+
+[ext_resource type="Script" uid="uid://3fuof0qh5i0p" path="res://debug/test.gd" id="1_bdhpj"]
+[ext_resource type="Texture2D" uid="uid://bj0ncu4s88e6p" path="res://icon.svg" id="2_3hy8g"]
+
+[node name="Test" type="Control" unique_id=653534544]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bdhpj")
+metadata/_edit_lock_ = true
+
+[node name="Enemy" type="Sprite2D" parent="." unique_id=1817397858]
+position = Vector2(429, 224)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_3hy8g")
+
+[node name="Player" type="Sprite2D" parent="." unique_id=695043974]
+position = Vector2(641, 259)
+texture = ExtResource("2_3hy8g")
+
+[node name="Result" type="Sprite2D" parent="." unique_id=2121103292]
+self_modulate = Color(1, 1, 0.5019608, 1)
+position = Vector2(218.00002, 157)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_3hy8g")

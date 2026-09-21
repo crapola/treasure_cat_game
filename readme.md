@@ -1,4 +1,4 @@
-## Treasure Cat Game
+# Shopcat
 
 This is a simple 2D arena game created using the Godot engine.
 

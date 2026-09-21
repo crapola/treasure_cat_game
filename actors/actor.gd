@@ -9,6 +9,8 @@ extends Node2D
 signal gold_collected(value:int)
 ## Health changed.
 signal health_changed(value:int)
+## Item picked up.
+signal item_collected(item:Node2D)
 ## Killed by other.
 signal killed(other:Actor)
 ## Allow buffs.
@@ -104,6 +106,10 @@ func damage(value:int)->void:
 func desert()->void:
 	print_debug(self.name," has deserted.")
 	queue_free()
+
+## Get item in hand.
+func get_item()->Node2D:
+	return hand.get_item()
 
 ## Collect gold for the faction. If it has no faction, return false.
 func give_gold(value:int)->bool:

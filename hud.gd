@@ -3,6 +3,8 @@ extends Control
 @onready var player_gold:Label=$Player
 @onready var player_health:PictorialValue=$PlayerHealth/PictorialValue
 @onready var monsters_gold:Label=$Monsters
+@onready var dagger_durability:PictorialValue=$Item/PictorialValue
+@onready var item:Label=$Item
 
 var _start_time:int=Time.get_unix_time_from_system() as int
 
@@ -11,6 +13,14 @@ func _ready()->void:
 
 func player_info_update(player:Cat)->void:
 	player_health.value=player.health
+	var i:Actor=player.get_item() as Actor
+	item.visible=i!=null
+	if i:
+		dagger_durability.value=i.health
+		if i.health==0:
+			item.hide()
+
+
 
 func faction_update(num:int,faction:Faction)->void:
 	var labels:Array[Label]=[player_gold,monsters_gold]

@@ -6,6 +6,10 @@ func _ready()->void:
 	assert(get_parent() is Actor)
 	print_debug(self," attached to ",_actor)
 
+func _process(_delta:float)->void:
+	# Counter rotation to stay upright.
+	rotation=-get_parent().global_rotation
+
 func _on_Timer_timeout()->void:
 	%Name.text=_actor.name
 	%Health.text=str(_actor.health)
