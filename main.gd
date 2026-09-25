@@ -78,7 +78,9 @@ func end_game(message:String)->void:
 	hud.clock_stop()
 	shop_spawner.free()
 	var n:=preload("res://game_over.tscn").instantiate()
-	 # TODO victory scene
+	 # TODO: Proper victory scene.
+	if message:
+		n.get_node(^"Defeat").text=message
 	canvaslayer_ui.add_child(n)
 
 	await get_tree().create_timer(0.5,true,true,false).timeout

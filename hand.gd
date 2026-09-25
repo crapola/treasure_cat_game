@@ -18,7 +18,10 @@ func has_item()->bool:
 
 ## Get the item.
 func get_item()->Node2D:
-	return _hand.get_child(0)
+	if _hand.get_child_count()>0:
+		return _hand.get_child(0)
+	else:
+		return null
 
 ## Give item.
 func give_item(node:Node2D)->void:

@@ -18,10 +18,7 @@ func highlight(control:Control)->void:
 	if _tween:_tween.stop()
 	_tween=create_tween()
 	_tween.set_parallel()
-	if visible:
-		_tween.tween_property(self,"global_position",control.global_position,t)
-	else:
-		global_position=control.global_position
+	_tween.tween_property(self,"global_position",control.global_position,t)
 	_tween.tween_property(self,"scale",Vector2.ONE,t)
 	_tween.tween_property(self,"color:a",0.125,t*2.0)
 	visible=true
