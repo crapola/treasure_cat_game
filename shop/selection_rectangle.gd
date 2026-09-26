@@ -7,17 +7,16 @@ var _tween:Tween
 func _init()->void:
 	size=Vector2(0,0)
 	mouse_filter=Control.MOUSE_FILTER_IGNORE
+	pivot_offset_ratio=Vector2.ONE/2.0
 	visible=false
 
 func highlight(control:Control)->void:
-	size=control.get_rect().size
 	color.a=0.5
 	scale=Vector2.ONE*0.5
-	pivot_offset=size/4.0
+	size=control.get_rect().size
 	const t:float=4/60.0
 	if not visible:
-		scale=Vector2.ONE
-		global_position=control.global_position
+		global_position=control.global_position+size/4.0
 	if _tween:_tween.stop()
 	_tween=create_tween()
 	_tween.set_parallel()
