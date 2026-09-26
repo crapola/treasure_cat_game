@@ -14,7 +14,10 @@ func highlight(control:Control)->void:
 	color.a=0.5
 	scale=Vector2.ONE*0.5
 	pivot_offset=size/4.0
-	const t:float=4/60.0#0.125
+	const t:float=4/60.0
+	if not visible:
+		scale=Vector2.ONE
+		global_position=control.global_position
 	if _tween:_tween.stop()
 	_tween=create_tween()
 	_tween.set_parallel()
